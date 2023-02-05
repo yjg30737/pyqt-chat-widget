@@ -81,3 +81,4 @@ if __name__ == "__main__":
 
 ## TODO list
 * show the profile icon
+* support emoji
