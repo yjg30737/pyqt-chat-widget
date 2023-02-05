@@ -16,7 +16,7 @@ This is very basic chat widget which looks like this
 
 ![image](https://user-images.githubusercontent.com/55078043/216795544-13ccd6ea-b5e6-4f9d-b280-b799969a64cb.png)
 
-## Code Sample
+## Code Sample (for installing the package with pip)
 ```python
 from PyQt5.QtCore import Qt, QCoreApplication
 from PyQt5.QtGui import QGuiApplication, QFont
