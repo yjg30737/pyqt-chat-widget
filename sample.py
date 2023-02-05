@@ -4,11 +4,12 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QWidget
 
 from pyqt_chat_widget.chatWidget import Prompt, ChatBrowser
 
+# HighDPI support, for better quality overall
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-QCoreApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)  # HighDPI support
+QCoreApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 QGuiApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
-QApplication.setFont(QFont('Arial', 12))
+QApplication.setFont(QFont('Arial', 12))  # to be more visible
 
 
 class MainWindow(QMainWindow):
@@ -34,8 +35,6 @@ class MainWindow(QMainWindow):
 
         self.__browser.showText('Hello!', True)
         self.__browser.showText('Hello! How may i help you?', False)
-
-        self.__textEdit.setFocus()
 
     def __chat(self):
         self.__browser.showText(self.__textEdit.toPlainText(), True)
