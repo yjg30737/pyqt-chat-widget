@@ -75,4 +75,6 @@ if __name__ == "__main__":
 ```
 
 ## TODO list
+* wrap the label in the qscrollarea
+* always set qscrollarea's scroll to the bottom
 * show the profile icon
