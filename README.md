@@ -19,6 +19,7 @@ This is very basic chat widget which looks like this
 If you want to change the style of widgets, check out `ChatBrowser`, `Prompt` class in "chatWidget.py".
 
 ## Code Sample (for installing the package with pip)
+
 ```python
 from PyQt5.QtCore import Qt, QCoreApplication
 from PyQt5.QtGui import QGuiApplication, QFont
@@ -28,10 +29,10 @@ from pyqt_chat_widget.chatWidget import Prompt, ChatBrowser
 
 # HighDPI support, for better quality overall
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-QCoreApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)  
+QCoreApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 QGuiApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
-QApplication.setFont(QFont('Arial', 12)) # to be more visible
+QApplication.setFont(QFont('Arial', 12))  # to be more visible
 
 
 class MainWindow(QMainWindow):
@@ -42,9 +43,9 @@ class MainWindow(QMainWindow):
     def __initUi(self):
         self.setWindowTitle('PyQt Chat Widget Example')
         self.__prompt = Prompt()
-        self.__lineEdit = self.__prompt.getLineEdit()
-        self.__lineEdit.setPlaceholderText('Write some text...')
-        self.__lineEdit.returnPressed.connect(self.__chat)
+        self.__textEdit = self.__prompt.getTextEdit()
+        self.__textEdit.setPlaceholderText('Write some text...')
+        self.__textEdit.returnPressed.connect(self.__chat)
         self.__browser = ChatBrowser()
         lay = QVBoxLayout()
         lay.addWidget(self.__browser)
@@ -59,9 +60,9 @@ class MainWindow(QMainWindow):
         self.__browser.showText('Hello! How may i help you?', False)
 
     def __chat(self):
-        self.__browser.showText(self.__lineEdit.text(), True)
-        self.__browser.showText(f'You said "{self.__lineEdit.text()}"', False)
-        self.__lineEdit.clear()
+        self.__browser.showText(self.__textEdit.text(), True)
+        self.__browser.showText(f'You said "{self.__textEdit.text()}"', False)
+        self.__textEdit.clear()
 
 
 if __name__ == "__main__":

@@ -19,9 +19,9 @@ class MainWindow(QMainWindow):
     def __initUi(self):
         self.setWindowTitle('PyQt Chat Widget Example')
         self.__prompt = Prompt()
-        self.__lineEdit = self.__prompt.getLineEdit()
-        self.__lineEdit.setPlaceholderText('Write some text...')
-        self.__lineEdit.returnPressed.connect(self.__chat)
+        self.__textEdit = self.__prompt.getTextEdit()
+        self.__textEdit.setPlaceholderText('Write some text...')
+        self.__textEdit.returnPressed.connect(self.__chat)
         self.__browser = ChatBrowser()
         lay = QVBoxLayout()
         lay.addWidget(self.__browser)
@@ -35,10 +35,12 @@ class MainWindow(QMainWindow):
         self.__browser.showText('Hello!', True)
         self.__browser.showText('Hello! How may i help you?', False)
 
+        self.__textEdit.setFocus()
+
     def __chat(self):
-        self.__browser.showText(self.__lineEdit.text(), True)
-        self.__browser.showText(f'You said "{self.__lineEdit.text()}"', False)
-        self.__lineEdit.clear()
+        self.__browser.showText(self.__textEdit.toPlainText(), True)
+        self.__browser.showText(f'You said "{self.__textEdit.toPlainText()}"', False)
+        self.__textEdit.clear()
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QScrollArea, QVBoxLayout, QWidget, QLabel, QLineEdit, QHBoxLayout
+from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtWidgets import QScrollArea, QVBoxLayout, QWidget, QLabel, QLineEdit, QHBoxLayout, QTextEdit, QApplication, \
+    QSizePolicy
 
 
 class ChatBrowser(QScrollArea):
@@ -19,6 +20,8 @@ class ChatBrowser(QScrollArea):
 
     def showText(self, text, user_f):
         chatLbl = QLabel(text)
+        chatLbl.setWordWrap(True)
+        chatLbl.setTextInteractionFlags(Qt.TextSelectableByMouse)
         if user_f:
             chatLbl.setStyleSheet('QLabel { padding: 1em }')
             chatLbl.setAlignment(Qt.AlignRight)
@@ -27,6 +30,34 @@ class ChatBrowser(QScrollArea):
             chatLbl.setAlignment(Qt.AlignLeft)
         self.widget().layout().addWidget(chatLbl)
 
+    def event(self, e):
+        if e.type() == 43:
+            self.verticalScrollBar().setSliderPosition(self.verticalScrollBar().maximum())
+        return super().event(e)
+    # def eventFilter(self, obj, e):
+    #     self.widget().setMaximumWidth(self.window().width())
+    #     return super().eventFilter(obj, e)
+
+
+class TextEditPrompt(QTextEdit):
+    returnPressed = pyqtSignal()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__initUi()
+
+    def __initUi(self):
+        self.setStyleSheet('QTextEdit { border: 1px solid #AAA; } ')
+
+    def keyPressEvent(self, e):
+        if e.key() == Qt.Key_Return or e.key() == Qt.Key_Enter:
+            if e.modifiers() == Qt.ShiftModifier:
+                return super().keyPressEvent(e)
+            else:
+                self.returnPressed.emit()
+        else:
+            return super().keyPressEvent(e)
+
 
 class Prompt(QWidget):
     def __init__(self):
@@ -34,14 +65,14 @@ class Prompt(QWidget):
         self.__initUi()
 
     def __initUi(self):
-        self.__lineEdit = QLineEdit()
-        self.__lineEdit.setStyleSheet('QLineEdit { border: 1px solid #AAA; padding: 1em }')
+        self.__textEdit = TextEditPrompt()
         lay = QHBoxLayout()
-        lay.addWidget(self.__lineEdit)
+        lay.addWidget(self.__textEdit)
         lay.setContentsMargins(0, 0, 0, 0)
         self.setLayout(lay)
+        self.setMaximumHeight(int(self.fontMetrics().boundingRect('M').height() * 1.7))
 
-    def getLineEdit(self):
-        return self.__lineEdit
+    def getTextEdit(self):
+        return self.__textEdit
 
 
