@@ -14,7 +14,7 @@ PyQt widget for chatting app
 ## Detailed Description
 This is very basic chat widget which looks like this
 
-![image](https://user-images.githubusercontent.com/55078043/216795544-13ccd6ea-b5e6-4f9d-b280-b799969a64cb.png)
+![image](https://user-images.githubusercontent.com/55078043/216797180-84841611-7d57-42e2-9b1c-8219657859c8.png)
 
 ## Code Sample (for installing the package with pip)
 ```python
@@ -72,5 +72,4 @@ if __name__ == "__main__":
 ```
 
 ## TODO list
-* set the style to widgets
 * show the profile icon
