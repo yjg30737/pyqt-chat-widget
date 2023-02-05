@@ -1,0 +1,1 @@
+from pyqt_chat_widget.chatWidget import ChatBrowser
