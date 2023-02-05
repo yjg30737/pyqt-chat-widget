@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyqt-chat-widget',
-    version='0.0.11',
+    version='0.0.12',
     author='Jung Gyu Yoon',
     author_email='yjg30737@gmail.com',
     license='MIT',

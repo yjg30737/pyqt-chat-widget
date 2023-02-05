@@ -33,9 +33,6 @@ class ChatBrowser(QScrollArea):
         if e.type() == 43:
             self.verticalScrollBar().setSliderPosition(self.verticalScrollBar().maximum())
         return super().event(e)
-    # def eventFilter(self, obj, e):
-    #     self.widget().setMaximumWidth(self.window().width())
-    #     return super().eventFilter(obj, e)
 
 
 class TextEditPrompt(QTextEdit):
