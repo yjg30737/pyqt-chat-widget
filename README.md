@@ -16,6 +16,8 @@ This is very basic chat widget which looks like this
 
 ![image](https://user-images.githubusercontent.com/55078043/216797180-84841611-7d57-42e2-9b1c-8219657859c8.png)
 
+If you want to change the style of widgets, check out `ChatBrowser`, `Prompt` class in "chatWidget.py".
+
 ## Code Sample (for installing the package with pip)
 ```python
 from PyQt5.QtCore import Qt, QCoreApplication
