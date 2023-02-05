@@ -4,7 +4,7 @@ PyQt widget for chatting app
 ## Requirements
 * PyQt5
 
-## How to Use
+## How to Install
 ### By Cloning
 1. git clone ~
 2. python sample.py
@@ -17,6 +17,11 @@ This is very basic chat widget which looks like this
 ![image](https://user-images.githubusercontent.com/55078043/216797180-84841611-7d57-42e2-9b1c-8219657859c8.png)
 
 If you want to change the style of widgets, check out `ChatBrowser`, `Prompt` class in "chatWidget.py".
+
+### How to Use
+After writing the text in the input, press the enter key to submit your text. It will show up on the chat browser.
+
+If you want to write the multi-line text, press shift+enter(=return).
 
 ## Code Sample (for installing the package with pip)
 
@@ -60,8 +65,8 @@ class MainWindow(QMainWindow):
         self.__browser.showText('Hello! How may i help you?', False)
 
     def __chat(self):
-        self.__browser.showText(self.__textEdit.text(), True)
-        self.__browser.showText(f'You said "{self.__textEdit.text()}"', False)
+        self.__browser.showText(self.__textEdit.toPlainText(), True)
+        self.__browser.showText(f'You said "{self.__textEdit.toPlainText()}"', False)
         self.__textEdit.clear()
 
 
@@ -75,6 +80,4 @@ if __name__ == "__main__":
 ```
 
 ## TODO list
-* wrap the label in the qscrollarea
-* always set qscrollarea's scroll to the bottom
 * show the profile icon
