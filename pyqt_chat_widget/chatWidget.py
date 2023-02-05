@@ -1,6 +1,5 @@
 from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtWidgets import QScrollArea, QVBoxLayout, QWidget, QLabel, QLineEdit, QHBoxLayout, QTextEdit, QApplication, \
-    QSizePolicy
+from PyQt5.QtWidgets import QScrollArea, QVBoxLayout, QWidget, QLabel, QHBoxLayout, QTextEdit
 
 
 class ChatBrowser(QScrollArea):
@@ -66,11 +65,17 @@ class Prompt(QWidget):
 
     def __initUi(self):
         self.__textEdit = TextEditPrompt()
+        self.__textEdit.textChanged.connect(self.updateHeight)
         lay = QHBoxLayout()
         lay.addWidget(self.__textEdit)
         lay.setContentsMargins(0, 0, 0, 0)
         self.setLayout(lay)
-        self.setMaximumHeight(int(self.fontMetrics().boundingRect('M').height() * 1.7))
+        self.updateHeight()
+
+    def updateHeight(self):
+        document = self.__textEdit.document()
+        height = document.size().height()
+        self.setMaximumHeight(int(height+document.documentMargin()))
 
     def getTextEdit(self):
         return self.__textEdit
